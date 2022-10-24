@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace StockTracking
 {
-    public partial class Form1 : Form
+    public partial class frmStockAlert : Form
     {
-        public Form1()
+        public frmStockAlert()
         {
             InitializeComponent();
+        }
+
+        private void btnOk_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

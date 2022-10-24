@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\CategoryBLL.cs" />
     <Compile Include="BLL\IBLL.cs" />
     <Compile Include="DAL\CATEGORY.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
@@ -62,7 +63,9 @@
     <Compile Include="DAL\CUSTOMER.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAL\DAO\CategoryDAO.cs" />
     <Compile Include="DAL\DAO\IDAO.cs" />
+    <Compile Include="DAL\DAO\StockContext.cs" />
     <Compile Include="DAL\DataModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -78,17 +81,19 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DAL\DTO\CategoryDetailDTO.cs" />
+    <Compile Include="DAL\DTO\CategoryDTO.cs" />
     <Compile Include="DAL\PRODUCT.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL\SALE.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="frmStockTracking.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="frmStockTracking.Designer.cs">
+      <DependentUpon>frmStockTracking.cs</DependentUpon>
     </Compile>
     <Compile Include="frmAddStock.cs">
       <SubType>Form</SubType>
@@ -150,6 +155,12 @@
     <Compile Include="frmSalesList.Designer.cs">
       <DependentUpon>frmSalesList.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmStockAlert.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmStockAlert.Designer.cs">
+      <DependentUpon>frmStockAlert.cs</DependentUpon>
+    </Compile>
     <Compile Include="General.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -183,6 +194,12 @@
     <EmbeddedResource Include="frmSalesList.resx">
       <DependentUpon>frmSalesList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmStockAlert.resx">
+      <DependentUpon>frmStockAlert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmStockTracking.resx">
+      <DependentUpon>frmStockTracking.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -191,6 +208,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EntityDeploy Include="DAL\DataModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -224,12 +242,17 @@
       <DependentUpon>DataModel.edmx</DependentUpon>
       <LastGenOutput>DataModel.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\exit.png" />
+    <None Include="Resources\icons8-stock-64.png" />
+    <None Include="Resources\icons8-category-64.png" />
+    <None Include="Resources\icons8-delete-trash-50.png" />
+    <None Include="Resources\icons8-customer-50.png" />
+    <None Include="Resources\icons8-holding-box-50.png" />
+    <None Include="Resources\icons8-sale-price-tag-80.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DAL\DTO\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
