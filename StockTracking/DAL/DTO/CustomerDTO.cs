@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StockTracking.DAL.DAO
+namespace StockTracking.DAL.DTO
 {
-    public class StockContext
+    public class CustomerDTO
     {
-       public StockTrackingEntities db=new StockTrackingEntities();
+        public List<CustomerDetailDTO> customers { get; set; }
     }
 }

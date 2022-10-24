@@ -54,6 +54,7 @@
             this.btnSave.TabIndex = 1;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // txtCustomerName
             // 
@@ -84,6 +85,7 @@
             this.Controls.Add(this.label1);
             this.Name = "frmCustomer";
             this.Text = "frmCustomer";
+            this.Load += new System.EventHandler(this.frmCustomer_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

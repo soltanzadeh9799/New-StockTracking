@@ -59,6 +59,7 @@
             this.txtCustomerName.Name = "txtCustomerName";
             this.txtCustomerName.Size = new System.Drawing.Size(184, 26);
             this.txtCustomerName.TabIndex = 0;
+            this.txtCustomerName.TextChanged += new System.EventHandler(this.txtCustomerName_TextChanged);
             // 
             // label1
             // 
@@ -145,6 +146,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "frmCustomerList";
             this.Text = "frmCustomerList";
+            this.Load += new System.EventHandler(this.frmCustomerList_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);

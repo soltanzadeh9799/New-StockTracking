@@ -59,6 +59,7 @@
             this.txtCategory.Name = "txtCategory";
             this.txtCategory.Size = new System.Drawing.Size(184, 26);
             this.txtCategory.TabIndex = 0;
+            this.txtCategory.TextChanged += new System.EventHandler(this.txtCategory_TextChanged);
             // 
             // label1
             // 
@@ -145,6 +146,7 @@
             this.Name = "frmCategoryList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Category List";
+            this.Load += new System.EventHandler(this.frmCategoryList_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);

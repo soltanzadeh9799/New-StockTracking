@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace StockTracking.DAL.DAO
 {
-    public class CategoryDAO: StockContext,IDAO<CATEGORY, CategoryDetailDTO>
+    public class CustomerDAO : StockContext, IDAO<CUSTOMER, CustomerDetailDTO>
     {
-        public bool Delete(CATEGORY entity)
+        public bool Delete(CUSTOMER entity)
         {
             throw new NotImplementedException();
         }
@@ -19,41 +19,38 @@ namespace StockTracking.DAL.DAO
             throw new NotImplementedException();
         }
 
-        public bool Insert(CATEGORY entity)
+        public bool Insert(CUSTOMER entity)
         {
             try
             {
-                db.CATEGORies.Add(entity);
+                db.CUSTOMERs.Add(entity);
                 db.SaveChanges();
                 return true;
-
             }
             catch (Exception ex)
             {
 
                 throw ex;
-            };
+            }
         }
 
-        public List<CategoryDetailDTO> Select()
+        public List<CustomerDetailDTO> Select()
         {
-            List<CategoryDetailDTO> categories = new List<CategoryDetailDTO>();
-            var list = db.CATEGORies;
+            List<CustomerDetailDTO> customer = new List<CustomerDetailDTO>();
+            var list = db.CUSTOMERs;
             foreach (var item in list)
             {
-                CategoryDetailDTO dto = new CategoryDetailDTO();
+                CustomerDetailDTO dto = new CustomerDetailDTO();
                 dto.ID = item.ID;
-                dto.CategoryName = item.CategoryName;
-                categories.Add(dto);    
+                dto.CustomerName=item.CustomerName;
+                customer.Add(dto);
             }
-            return categories;
-
+            return customer;
         }
 
-        public bool Update(CATEGORY entity)
+        public bool Update(CUSTOMER entity)
         {
             throw new NotImplementedException();
         }
     }
-    
 }
