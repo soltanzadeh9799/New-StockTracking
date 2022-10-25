@@ -1,4 +1,6 @@
-﻿using StockTracking.DAL.DTO;
+﻿using StockTracking.DAL;
+using StockTracking.DAL.DAO;
+using StockTracking.DAL.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +11,10 @@ namespace StockTracking.BLL
 {
     public class SalesBLL : IBLL<SalesDetailDTO, SalesDTO>
     {
+        SalesDAO dao=new SalesDAO();
+        ProductDAO productdao = new ProductDAO();
+        CategoryDAO categorydao = new CategoryDAO();
+        CustomerDAO Customerdao=new CustomerDAO();
         public bool Delete(SalesDetailDTO entity)
         {
             throw new NotImplementedException();
@@ -21,12 +27,30 @@ namespace StockTracking.BLL
 
         public bool Insert(SalesDetailDTO entity)
         {
-            throw new NotImplementedException();
+            SALE sales = new SALE();
+            sales.CategoryID=entity.CategoryID;
+            sales.ProductID=entity.ProductID;
+            sales.CustomerID = entity.CustomerID;
+            sales.ProductSalesPrice = entity.Price;
+            sales.ProductSalesAmount = entity.SalesAmount;
+            sales.SalesDate=entity.SalesDate;
+            dao.Insert(sales);
+            PRODUCT product = new PRODUCT();
+            product.ID=entity.ProductID;
+            int temp = entity.StockAmount - entity.SalesAmount;
+            product.StockAmount = temp;
+            productdao.Update(product);
+            return true;
         }
 
         public SalesDTO Select()
         {
-            throw new NotImplementedException();
+            SalesDTO dto=new SalesDTO();
+            dto.Products = productdao.Select();
+            dto.Customers=Customerdao.Select();
+            dto.Categories = categorydao.Select();
+            dto.Sales = dao.Select();
+            return dto;
         }
 
         public bool Update(SalesDetailDTO entity)

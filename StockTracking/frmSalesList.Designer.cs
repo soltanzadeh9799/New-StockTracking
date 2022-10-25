@@ -40,7 +40,7 @@
             this.rbSalesLess = new System.Windows.Forms.RadioButton();
             this.rbSalesMore = new System.Windows.Forms.RadioButton();
             this.rbSalesEqual = new System.Windows.Forms.RadioButton();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtSalesAmount = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.Price = new System.Windows.Forms.GroupBox();
             this.rbPriceLess = new System.Windows.Forms.RadioButton();
@@ -77,7 +77,7 @@
             this.panel1.Controls.Add(this.dpStart);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.groupBox1);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.txtSalesAmount);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.Price);
             this.panel1.Controls.Add(this.txtProductPrice);
@@ -103,6 +103,7 @@
             this.btnClean.TabIndex = 9;
             this.btnClean.Text = "Clean";
             this.btnClean.UseVisualStyleBackColor = true;
+            this.btnClean.Click += new System.EventHandler(this.btnClean_Click);
             // 
             // chDate
             // 
@@ -124,6 +125,7 @@
             this.btnSearch.TabIndex = 8;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // dpEnd
             // 
@@ -209,14 +211,14 @@
             this.rbSalesEqual.Text = "Equal";
             this.rbSalesEqual.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // txtSalesAmount
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(475, 63);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(184, 26);
-            this.textBox1.TabIndex = 21;
-            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
+            this.txtSalesAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSalesAmount.Location = new System.Drawing.Point(475, 63);
+            this.txtSalesAmount.Name = "txtSalesAmount";
+            this.txtSalesAmount.Size = new System.Drawing.Size(184, 26);
+            this.txtSalesAmount.TabIndex = 21;
+            this.txtSalesAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // label5
             // 
@@ -425,6 +427,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "frmSalesList";
             this.Text = "frmSalesList";
+            this.Load += new System.EventHandler(this.frmSalesList_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -469,7 +472,7 @@
         private System.Windows.Forms.RadioButton rbSalesLess;
         private System.Windows.Forms.RadioButton rbSalesMore;
         private System.Windows.Forms.RadioButton rbSalesEqual;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtSalesAmount;
         private System.Windows.Forms.Label label5;
     }
 }

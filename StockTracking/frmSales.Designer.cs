@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
+            this.dgCustomer = new System.Windows.Forms.DataGridView();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.dgCategoryList = new System.Windows.Forms.DataGridView();
-            this.dgCustomerList = new System.Windows.Forms.DataGridView();
-            this.cmbCategorySearchName = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.txtCustomerSearchName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.dgProductList = new System.Windows.Forms.DataGridView();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.cmbCategorySearchName = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtCustomerName = new System.Windows.Forms.TextBox();
             this.txtProductName = new System.Windows.Forms.TextBox();
@@ -47,17 +47,17 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtProductStock = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtProductSalesAmount = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
-            this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgCustomer)).BeginInit();
             this.panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgCategoryList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgCustomerList)).BeginInit();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgProductList)).BeginInit();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -70,19 +70,9 @@
             this.panel1.Size = new System.Drawing.Size(284, 494);
             this.panel1.TabIndex = 0;
             // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.dgCategoryList);
-            this.panel2.Controls.Add(this.panel4);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(284, 238);
-            this.panel2.TabIndex = 0;
-            // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.dgCustomerList);
+            this.panel3.Controls.Add(this.dgCustomer);
             this.panel3.Controls.Add(this.panel5);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 238);
@@ -90,15 +80,15 @@
             this.panel3.Size = new System.Drawing.Size(284, 256);
             this.panel3.TabIndex = 1;
             // 
-            // panel4
+            // dgCustomer
             // 
-            this.panel4.Controls.Add(this.cmbCategorySearchName);
-            this.panel4.Controls.Add(this.label3);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(0, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(284, 71);
-            this.panel4.TabIndex = 0;
+            this.dgCustomer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgCustomer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgCustomer.Location = new System.Drawing.Point(0, 69);
+            this.dgCustomer.Name = "dgCustomer";
+            this.dgCustomer.Size = new System.Drawing.Size(284, 187);
+            this.dgCustomer.TabIndex = 1;
+            this.dgCustomer.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgCustomerList_RowEnter);
             // 
             // panel5
             // 
@@ -110,43 +100,6 @@
             this.panel5.Size = new System.Drawing.Size(284, 69);
             this.panel5.TabIndex = 0;
             // 
-            // dgCategoryList
-            // 
-            this.dgCategoryList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgCategoryList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgCategoryList.Location = new System.Drawing.Point(0, 71);
-            this.dgCategoryList.Name = "dgCategoryList";
-            this.dgCategoryList.Size = new System.Drawing.Size(284, 167);
-            this.dgCategoryList.TabIndex = 1;
-            // 
-            // dgCustomerList
-            // 
-            this.dgCustomerList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgCustomerList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgCustomerList.Location = new System.Drawing.Point(0, 69);
-            this.dgCustomerList.Name = "dgCustomerList";
-            this.dgCustomerList.Size = new System.Drawing.Size(284, 187);
-            this.dgCustomerList.TabIndex = 1;
-            // 
-            // cmbCategorySearchName
-            // 
-            this.cmbCategorySearchName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbCategorySearchName.FormattingEnabled = true;
-            this.cmbCategorySearchName.Location = new System.Drawing.Point(7, 32);
-            this.cmbCategorySearchName.Name = "cmbCategorySearchName";
-            this.cmbCategorySearchName.Size = new System.Drawing.Size(184, 28);
-            this.cmbCategorySearchName.TabIndex = 0;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(3, 9);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(132, 20);
-            this.label3.TabIndex = 16;
-            this.label3.Text = "Category Name";
-            // 
             // txtCustomerSearchName
             // 
             this.txtCustomerSearchName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -154,6 +107,7 @@
             this.txtCustomerSearchName.Name = "txtCustomerSearchName";
             this.txtCustomerSearchName.Size = new System.Drawing.Size(184, 26);
             this.txtCustomerSearchName.TabIndex = 0;
+            this.txtCustomerSearchName.TextChanged += new System.EventHandler(this.txtCustomerSearchName_TextChanged);
             // 
             // label1
             // 
@@ -164,6 +118,56 @@
             this.label1.Size = new System.Drawing.Size(137, 20);
             this.label1.TabIndex = 6;
             this.label1.Text = "Customer Name";
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.dgProductList);
+            this.panel2.Controls.Add(this.panel4);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(284, 238);
+            this.panel2.TabIndex = 0;
+            // 
+            // dgProductList
+            // 
+            this.dgProductList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgProductList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgProductList.Location = new System.Drawing.Point(0, 71);
+            this.dgProductList.Name = "dgProductList";
+            this.dgProductList.Size = new System.Drawing.Size(284, 167);
+            this.dgProductList.TabIndex = 1;
+            this.dgProductList.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgProductList_RowEnter);
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.cmbCategorySearchName);
+            this.panel4.Controls.Add(this.label3);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(284, 71);
+            this.panel4.TabIndex = 0;
+            // 
+            // cmbCategorySearchName
+            // 
+            this.cmbCategorySearchName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbCategorySearchName.FormattingEnabled = true;
+            this.cmbCategorySearchName.Location = new System.Drawing.Point(7, 32);
+            this.cmbCategorySearchName.Name = "cmbCategorySearchName";
+            this.cmbCategorySearchName.Size = new System.Drawing.Size(184, 28);
+            this.cmbCategorySearchName.TabIndex = 0;
+            this.cmbCategorySearchName.SelectedIndexChanged += new System.EventHandler(this.cmbCategorySearchName_SelectedIndexChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(3, 9);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(132, 20);
+            this.label3.TabIndex = 16;
+            this.label3.Text = "Category Name";
             // 
             // label2
             // 
@@ -241,14 +245,14 @@
             this.label6.TabIndex = 18;
             this.label6.Text = "Product Stock";
             // 
-            // textBox1
+            // txtProductSalesAmount
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(212, 207);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(202, 26);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
+            this.txtProductSalesAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtProductSalesAmount.Location = new System.Drawing.Point(212, 207);
+            this.txtProductSalesAmount.Name = "txtProductSalesAmount";
+            this.txtProductSalesAmount.Size = new System.Drawing.Size(202, 26);
+            this.txtProductSalesAmount.TabIndex = 0;
+            this.txtProductSalesAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // label7
             // 
@@ -280,6 +284,7 @@
             this.btnSave.TabIndex = 1;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // frmSales
             // 
@@ -288,7 +293,7 @@
             this.ClientSize = new System.Drawing.Size(724, 494);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtProductSalesAmount);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.txtProductStock);
             this.Controls.Add(this.label6);
@@ -302,15 +307,16 @@
             this.Name = "frmSales";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sales";
+            this.Load += new System.EventHandler(this.frmSales_Load);
             this.panel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgCustomer)).EndInit();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgCategoryList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgCustomerList)).EndInit();
+            this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgProductList)).EndInit();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -322,9 +328,9 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.DataGridView dgCategoryList;
+        private System.Windows.Forms.DataGridView dgProductList;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.DataGridView dgCustomerList;
+        private System.Windows.Forms.DataGridView dgCustomer;
         private System.Windows.Forms.ComboBox cmbCategorySearchName;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtCustomerSearchName;
@@ -337,7 +343,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtProductStock;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtProductSalesAmount;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnSave;
