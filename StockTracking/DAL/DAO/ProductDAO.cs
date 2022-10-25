@@ -12,11 +12,41 @@ namespace StockTracking.DAL.DAO
     {
         public bool Delete(PRODUCT entity)
         {
-            PRODUCT product = new PRODUCT();
-            product.isDeleted = true;
-            product.DeletedDate = DateTime.Today;
-            db.SaveChanges();
-            return true;
+            try
+            {
+                if (entity.ID != 0)
+                {
+                    PRODUCT product = new PRODUCT();
+                    product.isDeleted = true;
+                    product.DeletedDate = DateTime.Today;
+                    db.SaveChanges();
+                }
+                else if(entity.CategoryID!=0)
+                {
+                    List<PRODUCT> product=db.PRODUCTs.Where(x => x.CategoryID==entity.CategoryID).ToList();
+                    foreach (var item in product)
+                    {
+                        item.isDeleted = false;
+                        item.DeletedDate = DateTime.Today;
+
+                        List<SALE> sales = db.SALES.Where(x => x.ProductID == entity.ID).ToList();
+                        foreach (var item1 in sales)
+                        {
+                            item1.isDeleted = false;
+                            item1.DeletedDate = DateTime.Today;
+                        }
+                        db.SaveChanges();
+                    }
+                    db.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
         }
 
         public bool GetBack(int ID)
@@ -34,7 +64,7 @@ namespace StockTracking.DAL.DAO
         public List<ProductDetailDTO> Select()
         {
             List<ProductDetailDTO> product = new List<ProductDetailDTO>();
-            var list = (from p in db.PRODUCTs.Where(x=>x.isDeleted==false)
+            var list = (from p in db.PRODUCTs.Where(x => x.isDeleted == false)
                         join c in db.CATEGORies on p.CategoryID equals c.ID
                         select new
                         {
@@ -68,20 +98,20 @@ namespace StockTracking.DAL.DAO
                 if (entity.CategoryID == 0)
                 {
                     product.StockAmount = entity.StockAmount;
-                    
+
                 }
                 else
                 {
-                    product.ProductName=entity.ProductName;
+                    product.ProductName = entity.ProductName;
                     product.Price = entity.Price;
-                    product.CategoryID=entity.CategoryID;
+                    product.CategoryID = entity.CategoryID;
                 }
                 db.SaveChanges();
                 return true;
             }
             catch (Exception ex)
             {
-               
+
                 throw ex;
             }
 
