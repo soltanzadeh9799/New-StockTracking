@@ -103,8 +103,9 @@ namespace StockTracking.DAL.DAO
                 SALE sales = db.SALES.First(x => x.ID == entity.ID);
                 sales.ProductSalesAmount = entity.ProductSalesAmount;
                 db.SaveChanges();
-
+                return true;
             }
+
             catch (Exception ex)
             {
 
