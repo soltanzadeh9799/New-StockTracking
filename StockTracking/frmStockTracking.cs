@@ -69,5 +69,10 @@ namespace StockTracking
         {
             Application.Exit();
         }
+
+        private void frmStockTracking_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

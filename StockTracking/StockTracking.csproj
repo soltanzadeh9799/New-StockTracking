@@ -55,6 +55,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\SalesBLL.cs" />
+    <Compile Include="DAL\DAO\SalesDAO.cs" />
+    <Compile Include="DAL\DTO\SalesDetailDTO.cs" />
+    <Compile Include="DAL\DTO\SalesDTO.cs" />
     <Compile Include="frmAddStock.cs">
       <SubType>Form</SubType>
     </Compile>

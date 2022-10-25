@@ -16,7 +16,7 @@ namespace StockTracking
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmStockTracking());
+            Application.Run(new frmStockAlert());
         }
     }
 }

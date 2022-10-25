@@ -156,6 +156,7 @@
             this.Name = "frmStockTracking";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Stock Tracking";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmStockTracking_FormClosed);
             this.ResumeLayout(false);
 
         }
