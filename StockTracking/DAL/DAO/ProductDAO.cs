@@ -69,7 +69,7 @@ namespace StockTracking.DAL.DAO
             }
             catch (Exception ex)
             {
-
+                var g = 0;
                 throw ex;
             }
 
