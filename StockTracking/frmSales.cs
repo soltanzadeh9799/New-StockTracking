@@ -29,27 +29,45 @@ namespace StockTracking
             this.Close();
         }
         public SalesDTO dto = new SalesDTO();
+        public SalesDetailDTO detail=new SalesDetailDTO();
+        public bool isupdate = false;
         SalesBLL bll = new SalesBLL();  
         private void frmSales_Load(object sender, EventArgs e)
         {
-            cmbCategorySearchName.DataSource = dto.Categories;
-            cmbCategorySearchName.DisplayMember = "CategoryName";
-            cmbCategorySearchName.ValueMember = "ID";
-            cmbCategorySearchName.SelectedIndex = -1;
-            if (dto.Categories.Count > 0)
-                combofull = true;
+            if (!isupdate)
+            {
+                cmbCategorySearchName.DataSource = dto.Categories;
+                cmbCategorySearchName.DisplayMember = "CategoryName";
+                cmbCategorySearchName.ValueMember = "ID";
+                cmbCategorySearchName.SelectedIndex = -1;
+                if (dto.Categories.Count > 0)
+                    combofull = true;
 
-            dgProductList.DataSource = dto.Products;
-            dgProductList.Columns[0].HeaderText = "Product Name";
-            dgProductList.Columns[1].HeaderText = "Category Name";
-            dgProductList.Columns[2].HeaderText = "Stock Amount";
-            dgProductList.Columns[3].HeaderText = "Price";
-            dgProductList.Columns[4].Visible = false;
-            dgProductList.Columns[5].Visible = false;
+                dgProductList.DataSource = dto.Products;
+                dgProductList.Columns[0].HeaderText = "Product Name";
+                dgProductList.Columns[1].HeaderText = "Category Name";
+                dgProductList.Columns[2].HeaderText = "Stock Amount";
+                dgProductList.Columns[3].HeaderText = "Price";
+                dgProductList.Columns[4].Visible = false;
+                dgProductList.Columns[5].Visible = false;
 
-            dgCustomer.DataSource = dto.Customers;
-            dgCustomer.Columns[0].Visible = false;
-            dgCustomer.Columns[1].HeaderText = "Customer Name";
+                dgCustomer.DataSource = dto.Customers;
+                dgCustomer.Columns[0].Visible = false;
+                dgCustomer.Columns[1].HeaderText = "Customer Name";
+            }
+            else
+            {
+                panel1.Hide();
+                txtCustomerName.Text = detail.CustomerName;
+                txtProductName.Text = detail.ProductName;
+                txtProductPrice.Text = detail.Price.ToString();
+                txtProductSalesAmount.Text = detail.SalesAmount.ToString(); 
+                ProductDetailDTO prouct=dto.Products.First(x=>x.ProductID==detail.ProductID);
+                detail.StockAmount=prouct.StockAmount;
+                txtProductStock.Text = detail.StockAmount.ToString();
+
+
+            }
            
 
         }
@@ -83,7 +101,7 @@ namespace StockTracking
 
         }
 
-        SalesDetailDTO detail=new SalesDetailDTO();
+      
         private void dgProductList_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
             detail.ProductName = dgProductList.Rows[e.RowIndex].Cells[0].Value.ToString();
@@ -115,20 +133,44 @@ namespace StockTracking
                 MessageBox.Show("you have bot enough product for sale");
             else
             {
-                detail.SalesAmount=Convert.ToInt32(txtProductSalesAmount.Text);
-                detail.SalesDate = DateTime.Today;
-                if(bll.Insert(detail))
+                if (!isupdate)
                 {
-                    MessageBox.Show("Sales was added");
-                    bll = new SalesBLL();
-                    dto = bll.Select();
-                    dgProductList.DataSource = dto.Products;
-                    dto.Customers=dto.Customers;
-                    combofull = false;
-                    cmbCategorySearchName.DataSource = dto.Categories;
-                    if (dto.Products.Count > 0)
-                        combofull = true;
-                    txtProductSalesAmount.Clear();
+                    detail.SalesAmount = Convert.ToInt32(txtProductSalesAmount.Text);
+                    detail.SalesDate = DateTime.Today;
+                    if (bll.Insert(detail))
+                    {
+                        MessageBox.Show("Sales was added");
+                        bll = new SalesBLL();
+                        dto = bll.Select();
+                        dgProductList.DataSource = dto.Products;
+                        dto.Customers = dto.Customers;
+                        combofull = false;
+                        cmbCategorySearchName.DataSource = dto.Categories;
+                        if (dto.Products.Count > 0)
+                            combofull = true;
+                        txtProductSalesAmount.Clear();
+                    }
+                }
+                else
+                {
+                    if(detail.SalesAmount==Convert.ToInt32(txtProductSalesAmount.Text))
+                        MessageBox.Show("there is no change");
+                    else
+                    {
+                        int temp = detail.StockAmount + detail.SalesAmount;
+                        if(temp<Convert.ToInt32(txtProductSalesAmount.Text))
+                            MessageBox.Show("you have not enough product fro sale");
+                        else
+                        {
+                            detail.SalesAmount=Convert.ToInt32(txtProductSalesAmount.Text);
+                            detail.StockAmount = temp - detail.SalesAmount;
+                            if(bll.Update(detail))
+                            {
+                                MessageBox.Show("sales was update");
+                                this.Close();
+                            }
+                        }
+                    }
                 }
 
 
