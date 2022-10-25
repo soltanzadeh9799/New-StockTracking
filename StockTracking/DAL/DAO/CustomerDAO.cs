@@ -11,7 +11,21 @@ namespace StockTracking.DAL.DAO
     {
         public bool Delete(CUSTOMER entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                CUSTOMER customer = db.CUSTOMERs.First(x => x.ID == entity.ID);
+                customer.isDeleted = true;
+                customer.DeletedDate = DateTime.Today;
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+
         }
 
         public bool GetBack(int ID)
@@ -37,12 +51,12 @@ namespace StockTracking.DAL.DAO
         public List<CustomerDetailDTO> Select()
         {
             List<CustomerDetailDTO> customer = new List<CustomerDetailDTO>();
-            var list = db.CUSTOMERs;
+            var list = db.CUSTOMERs.Where(x=>x.isDeleted==false).ToList();
             foreach (var item in list)
             {
                 CustomerDetailDTO dto = new CustomerDetailDTO();
                 dto.ID = item.ID;
-                dto.CustomerName=item.CustomerName;
+                dto.CustomerName = item.CustomerName;
                 customer.Add(dto);
             }
             return customer;

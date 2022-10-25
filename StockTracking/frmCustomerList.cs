@@ -79,5 +79,26 @@ namespace StockTracking
             detail.CustomerName = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
             detail.ID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
         }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (detail.ID == 0)
+                MessageBox.Show("Select a Product from table");
+            else
+            {
+                DialogResult result = MessageBox.Show("Are you sure?", "Warning", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    if (bll.Delete(detail))
+                    {
+                        MessageBox.Show("Product was deleted");
+                        bll = new CustomerBLL();
+                        dto = bll.Select();
+                        dataGridView1.DataSource = dto.customers;
+                        txtCustomerName.Clear();
+                    }
+                }
+            }
+        }
     }
 }
