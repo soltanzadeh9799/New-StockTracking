@@ -18,7 +18,9 @@ namespace StockTracking
         {
             InitializeComponent();
         }
-        CategoryBLL bll=new CategoryBLL();
+        CategoryBLL bll = new CategoryBLL();
+        public CategoryDetailDTO detail = new CategoryDetailDTO();
+        public bool isupdate = false;
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -26,21 +28,40 @@ namespace StockTracking
 
         private void frmCategory_Load(object sender, EventArgs e)
         {
-
+            if (isupdate)
+                txtCategoryName.Text = detail.CategoryName;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if(txtCategoryName.Text.Trim()=="")
+            if (txtCategoryName.Text.Trim() == "")
                 MessageBox.Show("Category Name is Empty");
             else
             {
-                CategoryDetailDTO category = new CategoryDetailDTO();
-                category.CategoryName = txtCategoryName.Text;
-                if(bll.Insert(category))
+                if (!isupdate)//add
                 {
-                    MessageBox.Show("category was Added");
-                    txtCategoryName.Clear();
+                    CategoryDetailDTO category = new CategoryDetailDTO();
+                    category.CategoryName = txtCategoryName.Text;
+                    if (bll.Insert(category))
+                    {
+                        MessageBox.Show("category was Added");
+                        txtCategoryName.Clear();
+                    }
+                }
+                else
+                    if (isupdate)
+                {
+                    if (txtCategoryName.Text.Trim() == detail.CategoryName)
+                        MessageBox.Show("there is no change");
+                    else
+                    {
+                        detail.CategoryName = txtCategoryName.Text;
+                        if (bll.Update(detail))
+                        {
+                            MessageBox.Show("category was updated");
+                            txtCategoryName.Clear();
+                        }
+                    }
                 }
             }
         }
