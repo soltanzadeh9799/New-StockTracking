@@ -33,23 +33,23 @@ namespace StockTracking.DAL.DAO
                         join c in db.CATEGORies on p.CategoryID equals c.ID
                         select new
                         {
-                           ProductName=p.ProductName,
-                           CatgoryName=c.CategoryName,
-                           StockAmount=p.StockAmount,
-                           Price=p.Price,
-                           ProductID=p.ID,
-                           CategoryID=c.ID
+                            ProductName = p.ProductName,
+                            CatgoryName = c.CategoryName,
+                            StockAmount = p.StockAmount,
+                            Price = p.Price,
+                            ProductID = p.ID,
+                            CategoryID = c.ID
 
-                        }).OrderBy(x=>x.ProductName).ToList();
+                        }).OrderBy(x => x.ProductName).ToList();
             foreach (var item in list)
             {
                 ProductDetailDTO dto = new ProductDetailDTO();
                 dto.ProductName = item.ProductName;
                 dto.CategoryName = item.CatgoryName;
-                dto.StockAmount=item.StockAmount;
-                dto.Price=item.Price;
+                dto.StockAmount = item.StockAmount;
+                dto.Price = item.Price;
                 dto.ProductID = item.ProductID;
-                dto.CategoryID=item.CategoryID;
+                dto.CategoryID = item.CategoryID;
                 product.Add(dto);
             }
             return product;
@@ -57,7 +57,22 @@ namespace StockTracking.DAL.DAO
 
         public bool Update(PRODUCT entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                PRODUCT product = db.PRODUCTs.First(x => x.ID == entity.ID);
+                if (entity.CategoryID == 0)
+                {
+                    product.StockAmount = entity.StockAmount;
+                    db.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
         }
     }
 }
