@@ -146,5 +146,26 @@ namespace StockTracking
 
             }
         }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (detail.ProductID == 0)
+                MessageBox.Show("Select a Product from table");
+            else
+            {
+                DialogResult result = MessageBox.Show("Are you sure?", "Warning", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    if (bll.Delete(detail))
+                    {
+                        MessageBox.Show("Product was deleted");
+                        bll = new ProductBLL();
+                        dto = bll.Select();
+                        dataGridView1.DataSource = dto.Products;
+                        ClearFilter();
+                    }
+                }
+            }
+        }
     }
 }

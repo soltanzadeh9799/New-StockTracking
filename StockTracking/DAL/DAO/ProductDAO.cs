@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,7 +12,11 @@ namespace StockTracking.DAL.DAO
     {
         public bool Delete(PRODUCT entity)
         {
-            throw new NotImplementedException();
+            PRODUCT product = new PRODUCT();
+            product.isDeleted = true;
+            product.DeletedDate = DateTime.Today;
+            db.SaveChanges();
+            return true;
         }
 
         public bool GetBack(int ID)
@@ -29,7 +34,7 @@ namespace StockTracking.DAL.DAO
         public List<ProductDetailDTO> Select()
         {
             List<ProductDetailDTO> product = new List<ProductDetailDTO>();
-            var list = (from p in db.PRODUCTs
+            var list = (from p in db.PRODUCTs.Where(x=>x.isDeleted==false)
                         join c in db.CATEGORies on p.CategoryID equals c.ID
                         select new
                         {
