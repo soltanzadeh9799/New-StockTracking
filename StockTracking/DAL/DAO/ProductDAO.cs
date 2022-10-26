@@ -16,7 +16,7 @@ namespace StockTracking.DAL.DAO
             {
                 if (entity.ID != 0)
                 {
-                    PRODUCT product = new PRODUCT();
+                    PRODUCT product = db.PRODUCTs.First(x => x.ID == entity.ID);
                     product.isDeleted = true;
                     product.DeletedDate = DateTime.Today;
                     db.SaveChanges();
@@ -26,13 +26,13 @@ namespace StockTracking.DAL.DAO
                     List<PRODUCT> product=db.PRODUCTs.Where(x => x.CategoryID==entity.CategoryID).ToList();
                     foreach (var item in product)
                     {
-                        item.isDeleted = false;
+                        item.isDeleted = true;
                         item.DeletedDate = DateTime.Today;
 
                         List<SALE> sales = db.SALES.Where(x => x.ProductID == entity.ID).ToList();
                         foreach (var item1 in sales)
                         {
-                            item1.isDeleted = false;
+                            item1.isDeleted = true;
                             item1.DeletedDate = DateTime.Today;
                         }
                         db.SaveChanges();

@@ -18,7 +18,8 @@ namespace StockTracking
         {
             InitializeComponent();
         }
-
+        CategoryBLL bll = new CategoryBLL();
+        CategoryDTO dto = new CategoryDTO();
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -33,8 +34,7 @@ namespace StockTracking
             dto = bll.Select();
             dataGridView1.DataSource = dto.categories;
         }
-        CategoryBLL bll = new CategoryBLL();
-        CategoryDTO dto = new CategoryDTO();
+        
         private void frmCategoryList_Load(object sender, EventArgs e)
         {
             dto=bll.Select();
@@ -62,6 +62,7 @@ namespace StockTracking
                 this.Hide();
                 frm.ShowDialog();
                 this.Visible = true;
+                bll = new CategoryBLL();
                 dto = bll.Select();
                 dataGridView1.DataSource = dto.categories;
             }

@@ -21,7 +21,9 @@ namespace StockTracking
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-
+            frmStockTracking frm = new frmStockTracking();
+            this.Hide();
+            frm.ShowDialog();
         }
         ProductBLL bll = new ProductBLL();
         ProductDTO dto=new ProductDTO();

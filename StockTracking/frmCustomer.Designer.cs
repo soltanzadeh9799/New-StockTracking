@@ -84,7 +84,8 @@
             this.Controls.Add(this.txtCustomerName);
             this.Controls.Add(this.label1);
             this.Name = "frmCustomer";
-            this.Text = "frmCustomer";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Customer";
             this.Load += new System.EventHandler(this.frmCustomer_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

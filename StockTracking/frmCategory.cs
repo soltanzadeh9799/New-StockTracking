@@ -59,7 +59,7 @@ namespace StockTracking
                         if (bll.Update(detail))
                         {
                             MessageBox.Show("category was updated");
-                            txtCategoryName.Clear();
+                            this.Close();
                         }
                     }
                 }

@@ -41,6 +41,8 @@ namespace StockTracking
             this.Hide();
             frm.ShowDialog();
             this.Visible = true;
+            dto = bll.Select();
+            dataGridView1.DataSource = dto.Sales;
         }
         SalesBLL bll = new SalesBLL();
         SalesDTO dto = new SalesDTO();

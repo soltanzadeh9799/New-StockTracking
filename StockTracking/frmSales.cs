@@ -118,7 +118,7 @@ namespace StockTracking
 
         private void dgCustomerList_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
-            detail.CategoryName = dgCustomer.Rows[e.RowIndex].Cells[1].Value.ToString();
+            detail.CustomerName = dgCustomer.Rows[e.RowIndex].Cells[1].Value.ToString();
             detail.CustomerID=Convert.ToInt32(dgCustomer.Rows[e.RowIndex].Cells[0].Value);
             txtCustomerName.Text=detail.CustomerName;
         }
